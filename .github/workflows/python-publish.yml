@@ -28,4 +28,4 @@ jobs:
         pip install setuptools wheel twine
     - name: Build and publish
       run: |
-        python test.py
+        python gouziyun_daka.py
