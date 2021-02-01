@@ -3,9 +3,12 @@
 
 name: Upload Python Package
 
-on:
-  release:
-    types: [created]
+on: 
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: '30 3,12 * * *'
 
 jobs:
   deploy:
