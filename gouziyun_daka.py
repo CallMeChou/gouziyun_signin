@@ -1,13 +1,16 @@
 import requests
 from datetime import datetime
-# time
+from bs4 import BeautifulSoup
+import re
+# 北京时间
 t=datetime.today()
 ti= str(t.year)+"-"+str(t.month)+"-"+str(t.day)+" "+str(t.hour)+":"+str(t.minute)+":"+str(t.second)
-# data
+# 签到数据
 email_list = ["2079986882@qq.com","chou2079986882@gmial.com"]
 pass_words = ["Zhou3.1415926","Zhou3.1415926"]
 
 
+# 登陆函数
 def login(email,password,time):
     try:
         for i in range(2):
@@ -25,13 +28,32 @@ def login(email,password,time):
             # res.content.decode("utf-8")
             # res.encoding="utf-8"
             res=s.post("https://dog1.52dog.xyz/user/checkin")
-        txt_1 = email+"狗子云签到成功||||||"+time
-        requests.post("https://sc.ftqq.com/SCU157350Te9a01b046907e9e3ef2e03af71dbe5fa6018c6d67e1a4.send?text="+txt_1)
     except:
         txt_2 = email+"狗子云签到失败||||||"+time
         requests.post("https://sc.ftqq.com/SCU157350Te9a01b046907e9e3ef2e03af71dbe5fa6018c6d67e1a4.send?text="+txt_2)
 
+# 判断是否签到成功函数，如果成功页面中会出现 ——> <p>上次签到时间：2021-02-02 06:08:42</p>
+def judge(email,time):
+    # 判断是否签到成功
+    headers = {
+
+        'Cookie': 'uid=37904; email=2079986882%40qq.com; key=174161a493fffc40f68e7c711d65426639a8fd8b923f7; ip=bb84d3cb02a7ffa7e870be4a1072c378; expire_in=1612330345; crisp-client%2Fsession%2Fe6354567-516a-47f8-a493-2717841e5ef5=session_4e5f64fc-0354-4c33-9c11-768a6621cc74',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36 Edg/88.0.705.56'
+    }
+    sesson = requests.Session()
+    start_html = sesson.get(url="https://dog1.52dog.xyz/user", headers=headers)
+    soup = BeautifulSoup(start_html.text , 'lxml', exclude_encodings="utf-8")  # 使用BS4框架来解析网页源码
+    txt = str(soup.find_all('p')[2])   # 如果成功这个标签会是 ——> <p>上次签到时间：2021-02-02 06:08:42</p>
+    if re.match(r"<p>上次签到时间.*?</p>", txt):
+        print("ture")
+        txt_1 = email + "狗子云签到成功-->" + time
+        requests.post("https://sc.ftqq.com/SCU157350Te9a01b046907e9e3ef2e03af71dbe5fa6018c6d67e1a4.send?text=" + txt_1)
+    else:
+        print("false")
+        txt_2 = email + "狗子云签到失败-->" + time
+        requests.post("https://sc.ftqq.com/SCU157350Te9a01b046907e9e3ef2e03af71dbe5fa6018c6d67e1a4.send?text=" + txt_2)
 
 if __name__ == '__main__':
     for i in range(2):
         login(email=email_list[i],password=pass_words[i],time=ti)
+        judge(email=email_list[i],time=ti)
