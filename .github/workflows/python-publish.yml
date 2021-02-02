@@ -1,10 +1,11 @@
 name: gouziyun_daka
-on: 
+on:
   push:
-    branches:
-      - master 
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
   schedule:
-    - cron: '* * * * *'
+    - cron: "* * * * *"
 
 jobs:
   deploy:
@@ -24,4 +25,4 @@ jobs:
         pip install setuptools wheel twine
     - name: Build and publish
       run: |
-        python gouziyun_daka.py
+        python test.py
