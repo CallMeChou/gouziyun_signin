@@ -1,6 +1,8 @@
 import time
 ti = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-print("this is a test")
-logging.info(ti)
+print(ti)
+with open("1.txt","a+") as f:
+    f.write(ti)
+
   
   
