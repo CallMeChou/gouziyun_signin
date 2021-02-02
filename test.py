@@ -1,7 +1,7 @@
 import time
-date=time.now()
+ti = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 print("this is a test")
 with open("log.txt","wa") as f:
-  f.write(data)
+  f.write(ti)
   
   
