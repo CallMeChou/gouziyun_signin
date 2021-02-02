@@ -2,10 +2,10 @@ name: gouziyun_daka
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  watch:
+    types: [started]
   schedule:
-    - cron: "* * * * *"
+    - cron: "*/1 * * * *"
 
 jobs:
   build:
