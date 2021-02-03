@@ -53,7 +53,7 @@ if __name__ == '__main__':
     import datetime
     import pytz
 #     utc = pytz.timezone('UTC')
-    ti = datetime.datetime.now()
+    ti = str(datetime.datetime.now())
     # 2.账号密码信息
     username1 = os.environ["EMAIL1"]        
     password1 = os.environ["PASSWORD1"]
