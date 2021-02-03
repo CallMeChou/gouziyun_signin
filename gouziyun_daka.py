@@ -5,6 +5,11 @@ import re
 # 北京时间
 t=datetime.today()
 ti= str(t.year)+"-"+str(t.month)+"-"+str(t.day)+" "+str(t.hour)+":"+str(t.minute)+":"+str(t.second)
+# import datetime
+# import pytz
+# utc = pytz.timezone('UTC')
+# ti = datetime.datetime.now()
+
 # 签到数据
 email_list = ["2079986882@qq.com","chou2079986882@gmial.com"]
 pass_words = ["Zhou3.1415926","Zhou3.1415926"]
