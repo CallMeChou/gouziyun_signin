@@ -3,4 +3,3 @@ beautifulsoup4==4.6.3
 bs4==0.0.1
 lxml==4.6.2
 pytz==2018.5
-argparse==1.4.0
