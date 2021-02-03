@@ -22,8 +22,10 @@ jobs:
         pip install -r requirements.txt
     - name: process
       env:
-        EMAIL: ${{ secrets.EMAIL }}
-        PASSWORD: ${{ secrets.PASSWORD }}
+        EMAIL1: ${{ secrets.EMAIL1 }}
+        PASSWORD1: ${{ secrets.PASSWORD1 }}
+        EMAIL2: ${{ secrets.EMAIL2 }}
+        PASSWORD2: ${{ secrets.PASSWORD2 }}
       run: |
-        python3 test.py "$EMAIL" "$PASSWORD"
+        python3 test.py "$EMAIL1" "$PASSWORD1" "$EMAIL2" "$PASSWORD2"
         
