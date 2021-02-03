@@ -61,9 +61,9 @@ if __name__ == '__main__':
     password2 = os.environ["PASSWORD2"] 
     # 执行签到
     # 第一个签到
-    login(email=ueername1,password=password1,time=ti)
+    login(email=username1,password=password1,time=ti)
     judge(email=username1,time=ti)
     # 第二个签到
-    login(email=ueername2,password=password2,time=ti)
+    login(email=username2,password=password2,time=ti)
     judge(email=username2,time=ti)
     
