@@ -2,19 +2,7 @@ import requests
 from datetime import datetime
 from bs4 import BeautifulSoup
 import re
-# 北京时间
-t=datetime.today()
-ti= str(t.year)+"-"+str(t.month)+"-"+str(t.day)+" "+str(t.hour)+":"+str(t.minute)+":"+str(t.second)
-# import datetime
-# import pytz
-# utc = pytz.timezone('UTC')
-# ti = datetime.datetime.now()
-
-# 签到数据
-email_list = ["2079986882@qq.com","chou2079986882@gmial.com"]
-pass_words = ["Zhou3.1415926","Zhou3.1415926"]
-
-
+import os
 # 登陆函数
 def login(email,password,time):
     try:
@@ -59,6 +47,23 @@ def judge(email,time):
         requests.post("https://sc.ftqq.com/SCU157350Te9a01b046907e9e3ef2e03af71dbe5fa6018c6d67e1a4.send?text=" + txt_2)
 
 if __name__ == '__main__':
-    for i in range(2):
-        login(email=email_list[i],password=pass_words[i],time=ti)
-        judge(email=email_list[i],time=ti)
+    # 1.北京时间
+    t=datetime.today()
+    ti= str(t.year)+"-"+str(t.month)+"-"+str(t.day)+" "+str(t.hour)+":"+str(t.minute)+":"+str(t.second)
+    # import datetime
+    # import pytz
+    # utc = pytz.timezone('UTC')
+    # ti = datetime.datetime.now()
+    # 2.账号密码信息
+    username1 = os.environ["EMAIL1"]        
+    password1 = os.environ["PASSWORD1"]
+    username2 = os.environ["EMAIL2"]        
+    password2 = os.environ["PASSWORD2"] 
+    # 执行签到
+    # 第一个签到
+    login(email=ueername1,password=password1,time=ti)
+    judge(email=username1,time=ti)
+    # 第二个签到
+    login(email=ueername2,password=password2,time=ti)
+    judge(email=username2,time=ti)
+    
