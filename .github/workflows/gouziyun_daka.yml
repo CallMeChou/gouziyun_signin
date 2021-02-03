@@ -27,5 +27,5 @@ jobs:
         EMAIL2: ${{ secrets.EMAIL2 }}
         PASSWORD2: ${{ secrets.PASSWORD2 }}
       run: |
-        python3 test.py "$EMAIL1" "$PASSWORD1" "$EMAIL2" "$PASSWORD2"
+        python3 gouziyun_daka.py "$EMAIL1" "$PASSWORD1" "$EMAIL2" "$PASSWORD2"
         
