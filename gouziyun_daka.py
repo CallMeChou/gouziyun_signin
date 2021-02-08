@@ -37,8 +37,6 @@ def judge(email,tim,s):
     txt = str(soup.find_all('p')[2])   # 如果成功这个标签会是 ——> <p>上次签到时间：2021-02-02 06:08:42</p>
     if re.match(r"<p>上次签到时间.*?</p>", txt):
         print("ture")
-        txt_1 = email + "狗子云签到成功-->" + tim
-        requests.post("https://sc.ftqq.com/SCU157350Te9a01b046907e9e3ef2e03af71dbe5fa6018c6d67e1a4.send?text=" + txt_1)
     else:
         print("false")
         txt_2 = email + "狗子云签到失败-->" + tim
