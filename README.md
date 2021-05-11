@@ -37,7 +37,7 @@ setting ——>  Secrets ——> New repository secret
 
 5. 点击star
 
-
+ 
 
 end ——————————————————————————————————————— end
 
