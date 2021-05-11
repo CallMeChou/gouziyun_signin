@@ -1,6 +1,6 @@
-# 狗子云 每日签到
+# 狗子云 每日签到 
 
-https://dog1.52dog.xyz/user
+dog.dog21.xyz
 
 这是一个用来FQ的网站，注册登录送1G流量
 
