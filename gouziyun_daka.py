@@ -6,7 +6,9 @@ from lxml import etree
 import re
 import os
 
-
+headers = {
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36 Edg/90.0.818.56"
+        }
 # 登陆函数
 def login(email, password, tim):
     try:
@@ -17,20 +19,17 @@ def login(email, password, tim):
             "remember_me": "on",
             "code": ""
         }
-        headers = {
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36 Edg/90.0.818.56"
-        }
         s = requests.Session()
         res = s.post(login_url, data=data_1, headers=headers)
         # res.content.decode("utf-8")
         # res.encoding="utf-8"
-        res = s.post("https://dog.dog21.xyz/auth/login")
+        res = s.post("https://dog.dog21.xyz/user/checkin")
         return s
     except:
         print("登录失败")
         url = "https://qmsg.zendee.cn/send/0cb7ec3b53ee6db28ff921b6af54f9db"
         data ={
-            "msg": "【"+email+"】: "+ti+"      狗子登录失败@face=5@",
+            "msg": "【"+email+"】: "+ti+" "*50+"狗子登录失败@face=5@",
             'qq':'2079986882'
         }
         requests.post(url, data=data)
@@ -39,9 +38,6 @@ def login(email, password, tim):
 # 判断是否签到成功函数，如果成功页面中会出现 ——> <p>上次签到时间：2021-02-02 06:08:42</p>
 def judge(email, tim, s):
     # 判断是否签到成功
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36 Edg/88.0.705.56'
-    }
     start_html = s.get(url="https://dog.dog21.xyz/user", headers=headers)
     soup = BeautifulSoup(start_html.text, 'lxml', exclude_encodings="utf-8")  # 使用BS4框架来解析网页源码
     selector = etree.HTML(str(soup))
@@ -52,7 +48,7 @@ def judge(email, tim, s):
         print("ture")
         url = "https://qmsg.zendee.cn/send/0cb7ec3b53ee6db28ff921b6af54f9db"
         data={
-            "msg": "【"+email+"】: "+ti+"         狗子签到成功@face=2@",
+            "msg": "【"+email+"】: "+ti+" "*50+"狗子签到成功@face=2@",
             "qq":"2079986882"
         }
         requests.post(url, data=data)
@@ -60,7 +56,7 @@ def judge(email, tim, s):
         print("false")
         url = "https://qmsg.zendee.cn/send/0cb7ec3b53ee6db28ff921b6af54f9db"
         data = {
-            "msg": "【"+email+"】: "+ti+"          狗子签到失败@face=5@",
+            "msg": "【"+email+"】: "+ti+" "*50+"狗子签到失败@face=5@",
             'qq': '2079986882'
         }
         requests.post(url, data=data)
