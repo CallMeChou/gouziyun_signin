@@ -72,7 +72,6 @@ if __name__ == '__main__':
     password1 = os.environ["PASSWORD1"]
     username2 = os.environ["EMAIL2"]
     password2 = os.environ["PASSWORD2"]
-    print(password2)
     # 执行签到
     # 第一个签到
     judge(email=username1, tim=ti, s=login(email=username1, password=password1, tim=ti))
